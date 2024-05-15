@@ -7,19 +7,20 @@ const openai = new OpenAI({
 
 const generateQuest = async (req, res) => {
     //TODO: -- Replace hard coded types with the ones from the body
-    const { enemyType, questType } = req.body;
+    const { enemyTypeInput, questTypeInput, combatLevelInput } = req.body;
+    const highOrLowLevel = combatLevelInput >= 10 ? 'High level' : 'Low level';
 
     const quest = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
-            { role: 'user', content: `Come up with a Dungeons and Dragons 5e quest using Orc enemies and a Combat style.` },
+            { role: 'user', content: `Come up with a level ${combatLevelInput} Dungeons and Dragons 5e quest with ${enemyTypeInput} enemies and a ${questTypeInput} quest style.` },
           ],
           max_tokens: 250
     })
 
     const image = await openai.images.generate({
         model: "dall-e-3",
-        prompt: `Fantasy party encountering Orc creatures during a Combat quest.`,
+        prompt: `${highOrLowLevel} fantasy party encountering ${enemyTypeInput} creatures during a ${questTypeInput} quest.`,
         n: 1,
         size: "1024x1024",
     })

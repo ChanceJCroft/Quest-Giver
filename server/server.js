@@ -11,10 +11,5 @@ app.listen(4000, () => console.log('Working on Port 4000'))
 app.use(express.json())
 app.use(cors());
 
-
-//Dont think this will be needed
-/* //make use of a static folder called 'public' for FE
-app.use(express.static('public')) */
-
 //Routes
 app.post('/openai/quest', generateQuest)

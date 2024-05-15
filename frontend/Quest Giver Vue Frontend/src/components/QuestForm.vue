@@ -2,6 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
+import { request } from 'node_modules/axios/index.cjs';
 
 const maximumQuestLevel: number = 20;
 
@@ -12,8 +13,17 @@ const combatLevelLabel = 'Combat Level:';
 const submitBtnText = 'Submit';
 const exampleQuestTypes: string = 'Some example quest types are: Combat, Exploration, Investigation, or a Dungeon Delve!'
 
+let combatLevelInput: number = 0;
+let enemyTypeInput: string = '';
+let questTypeInput: string = '';
+
+
 async function submitToOpenAi() {
-    const response = await axios.post('http://localhost:4000/openai/quest');
+
+    //The modeling is working here
+    const requestObj = {combatLevelInput, enemyTypeInput, questTypeInput};
+
+    const response = await axios.post('http://localhost:4000/openai/quest', requestObj);
     console.log(response);
     //Need to add an event handler here that will set the response to the appropriate image and P slots
     //If a 429 response then there are no more funds -- create specific modal or warning if that happens
@@ -27,19 +37,19 @@ async function submitToOpenAi() {
     <div class="d-flex justify-content-around form-container">
         <div class="input-field">
         <label for="enemy-type">{{ enemyTypeLabel }}</label>
-        <input class="col-md-3" type="text" name="enemy-type" id="enemy-type"/>
+        <input v-model="enemyTypeInput" class="col-md-3" type="text" name="enemy-type" id="enemy-type"/>
         </div>
 
         <div class="input-field">
         <FontAwesomeIcon :icon=faCircleInfo class="icon" :title=exampleQuestTypes v-b-tooltip.hover/>
         <label for="quest-type">{{ questTypeLabel }}</label>
-        <input class="col-md-3" type="text" name="quest-type" id="quest-type"/>
+        <input v-model="questTypeInput" class="col-md-3" type="text" name="quest-type" id="quest-type"/>
         </div>
 
         <div class="input-field">
         <label for="level-select">{{ combatLevelLabel }}</label>
-        <select type="text" class="col-md-2" name="level-select">
-            <option v-for="n in maximumQuestLevel" :key=n >{{ n }}</option>
+        <select v-model="combatLevelInput" type="text" class="col-md-2" name="level-select">
+            <option v-for="n in maximumQuestLevel" :key=n :value=n>{{ n }}</option>
         </select>
     </div>
     </div>
