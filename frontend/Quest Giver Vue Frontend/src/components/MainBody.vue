@@ -1,12 +1,15 @@
 <template>
-    <div class="row">
-        <div class="col d-flex justify-content-center p-5">
-            <img :src=props.questImageUrl id="" alt="" />
+    <div class="row justify-content-around main-content">
+        <div class="col d-flex justify-content-center m-5">
+            <img :src=props.questImageUrl id="" alt="" class="quest-img" />
         </div>
-        <div v-for="section in questDescriptionReference" :key="section.length">
+        <div class="col justify-content-center m-5">
+           <p v-for="section in questDescriptionReference" :key="section"
+        >
             {{ section }}
             <br/>
             <br/>
+        </p>
         </div>
     </div>
 </template>
@@ -22,13 +25,31 @@ let questDescriptionReference: Array<string> = ['Request a quest to get started'
 
 //Updates the reference, which in turns updates the UI
 //This function neatly separates the text in the UI
-watch(() => props.questDescription, (newVal, oldVal) => {
-    console.log(newVal);
-    console.log(oldVal);
-    questDescriptionReference = newVal.split("\n").filter((x:string) => x != '');
+watch(() => props.questDescription, (newVal) => {
+    let newRef = newVal.split("\n").filter((x:string) => x != '');
+    
+    //WIP logic -- Attempting to conditionally uppercase a substring upon reaching a ':'
+    //Need to investigate potential issues -- i.e. What if a colon is returning not related to a title section?
+    /* for(let x of newRef) {
+        const split = x.split(' ')[0];
+        if(split[split.length] === ':') {
+            newRef[0] = split.toUpperCase()
+            console.log(split[0].toUpperCase());
+        }
+    } */
+    questDescriptionReference = newRef;
 })
 </script>
 
 
 <style scoped>
+
+.main-content {
+    max-width: 99%;
+}
+
+.quest-img {
+    height: 1024px;
+    width: 1024px;
+}
 </style>

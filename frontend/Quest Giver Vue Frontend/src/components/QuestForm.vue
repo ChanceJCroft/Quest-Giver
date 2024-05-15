@@ -19,16 +19,14 @@ let questTypeInput: string = '';
 const emit = defineEmits(['questProvided']);
 
 async function submitToOpenAi() {
-
-    console.log('Hitting this??????');
-    //The modeling is working here
     const requestObj = {combatLevelInput, enemyTypeInput, questTypeInput};
 
     const response = await axios.post('http://localhost:4000/openai/quest', requestObj);
-    console.log(response);
-    //Need to add an event handler here that will set the response to the appropriate image and P slots
+    
     emit('questProvided', response.data);
     //If a 429 response then there are no more funds -- create specific modal or warning if that happens
+
+    //If a 402 response is given then there was an issue with the prompt being 'unsafe' -- prompt user to try again
     return;
 }
 

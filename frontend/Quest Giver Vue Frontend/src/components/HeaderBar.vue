@@ -16,7 +16,7 @@ const instructionsTitle: string = 'Instructions';
         
     </div>
     <div class="d-flex justify-content-center align-middle">
-        <FontAwesomeIcon :icon=faCircleInfo class="icon" :title=instructionsHoverText /><p>{{ instructionsTitle }}</p>
+        <FontAwesomeIcon :icon=faCircleInfo class="icon pt-1" :title=instructionsHoverText /><p>{{ instructionsTitle }}</p>
     </div>
 </template>
 
