@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HeaderBar from './components/HeaderBar.vue';
 import QuestForm from './components/QuestForm.vue';
+import MainBody from './components/MainBody.vue';
 
 </script>
 
@@ -9,6 +10,7 @@ import QuestForm from './components/QuestForm.vue';
     <HeaderBar />
   </header>
   <QuestForm />
+  <MainBody />
 </template>
 
 <style scoped>
