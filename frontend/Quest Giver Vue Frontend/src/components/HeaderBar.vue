@@ -5,7 +5,7 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 //Text Variables
 const titleText: string = 'Dungeons and Dragons Quest Generator';
 const instructionsHoverText: string = 'Welcome! To be given a quest you must first fill in the 3 fields below. Please specificy what type of enemy you would like, what type of quest, what level, and hit Submit! Then, sit back and wait for your quest to be populated in the page below.'
-
+const instructionsTitle: string = 'Instructions';
 
 </script>
 
@@ -15,7 +15,9 @@ const instructionsHoverText: string = 'Welcome! To be given a quest you must fir
         <h1 class="title">{{ titleText }}</h1>
         
     </div>
-    <p class="d-flex justify-content-center"><FontAwesomeIcon :icon=faCircleInfo class="icon" :title=instructionsHoverText v-b-tooltip.hover/>Instructions</p>
+    <div class="d-flex justify-content-center align-middle">
+        <FontAwesomeIcon :icon=faCircleInfo class="icon" :title=instructionsHoverText /><p>{{ instructionsTitle }}</p>
+    </div>
 </template>
 
 

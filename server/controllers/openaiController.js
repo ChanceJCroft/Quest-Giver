@@ -15,7 +15,7 @@ const generateQuest = async (req, res) => {
         messages: [
             { role: 'user', content: `Come up with a level ${combatLevelInput} Dungeons and Dragons 5e quest with ${enemyTypeInput} enemies and a ${questTypeInput} quest style.` },
           ],
-          max_tokens: 250
+          max_tokens: 500
     })
 
     const image = await openai.images.generate({
