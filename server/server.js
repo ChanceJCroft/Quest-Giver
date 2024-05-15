@@ -1,16 +1,18 @@
-const {generateQuest} = require('./controllers/openaiController')
+const { generateQuest } = require('./controllers/openaiController')
 const express = require('express')
 
-//setup
+//Express Setup
 const app = express();
 app.listen(4000, () => console.log('Working on Port 4000'))
 
 
-//middleware
+//Middleware
 app.use(express.json())
 
-//make use of a static folder called 'public' for FE
-app.use(express.static('public'))
 
-//routes
+//Dont think this will be needed
+/* //make use of a static folder called 'public' for FE
+app.use(express.static('public')) */
+
+//Routes
 app.post('/openai/quest', generateQuest)
