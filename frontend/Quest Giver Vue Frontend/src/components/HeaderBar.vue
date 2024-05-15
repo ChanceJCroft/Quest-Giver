@@ -15,7 +15,7 @@ const instructionsHoverText: string = 'Welcome! To be given a quest you must fir
         <h1 class="title">{{ titleText }}</h1>
         
     </div>
-    <p><FontAwesomeIcon :icon=faCircleInfo class="icon" :title=instructionsHoverText v-b-tooltip.hover/>Instructions</p>
+    <p class="d-flex justify-content-center"><FontAwesomeIcon :icon=faCircleInfo class="icon" :title=instructionsHoverText v-b-tooltip.hover/>Instructions</p>
 </template>
 
 
@@ -25,7 +25,7 @@ const instructionsHoverText: string = 'Welcome! To be given a quest you must fir
     width: 100%;
     height: 100%;
     min-height: 15vh;
-    background-color: blueviolet;
+    background-image: url('../assets/images/header-banner.jpg');
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,10 +34,16 @@ const instructionsHoverText: string = 'Welcome! To be given a quest you must fir
 .title {
     text-align: center;
     margin: auto;
+    color: white;
 }
 
 .icon {
     margin-right: .25em;
+}
+
+.instructions {
+    display: flex;
+    justify-content: center;
 }
 
 

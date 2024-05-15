@@ -16,6 +16,7 @@ async function submitToOpenAi() {
     const response = await axios.post('http://localhost:4000/openai/quest');
     console.log(response);
     //Need to add an event handler here that will set the response to the appropriate image and P slots
+    //If a 429 response then there are no more funds -- create specific modal or warning if that happens
     return;
 }
 
@@ -24,25 +25,38 @@ async function submitToOpenAi() {
 
 <template>
     <div class="d-flex justify-content-around form-container">
+        <div class="input-field">
         <label for="enemy-type">{{ enemyTypeLabel }}</label>
         <input class="col-md-3" type="text" name="enemy-type" id="enemy-type"/>
+        </div>
 
+        <div class="input-field">
         <FontAwesomeIcon :icon=faCircleInfo class="icon" :title=exampleQuestTypes v-b-tooltip.hover/>
         <label for="quest-type">{{ questTypeLabel }}</label>
         <input class="col-md-3" type="text" name="quest-type" id="quest-type"/>
+        </div>
 
+        <div class="input-field">
         <label for="level-select">{{ combatLevelLabel }}</label>
         <select type="text" class="col-md-2" name="level-select">
             <option v-for="n in maximumQuestLevel" :key=n >{{ n }}</option>
         </select>
     </div>
-    <button class="btn btn-success col-md-3 submit" v-on:click="submitToOpenAi">{{ submitBtnText }}</button>
+    </div>
+    <button class="btn btn-success col-md-3 submit mt-3" v-on:click="submitToOpenAi">{{ submitBtnText }}</button>
 </template>
 
 
 <style scoped>
+
 .form-container {
-    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.input-field {
+    min-width: 33%;
 }
 
 .submit {
