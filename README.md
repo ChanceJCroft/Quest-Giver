@@ -29,9 +29,7 @@ Frontend should be running on Port 5173 (in v1).
 ```
 
 
-## Usage example
-
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
+## Screenshot
 
 ![image](https://github.com/ChanceJCroft/Quest-Giver/assets/66639666/580433b9-bf91-4237-a04c-44102276ce56)
 
