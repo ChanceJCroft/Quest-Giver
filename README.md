@@ -26,6 +26,17 @@ Node server.js
 
 #Server should be running on Port 4000 (in v1).
 ```
+NOTE: If you are having trouble with the OpenAI API key, see these instructions on how to set it at the machine level:
+![image](https://github.com/ChanceJCroft/Quest-Giver/assets/66639666/849dfcc3-73ac-452c-8b9f-86dfa627fc34)
+
+Please note that in _this_ example you would need to set the OpenAI API key with that slightly altered name like such:
+
+```sh
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+})
+```
+
 
 Installation and Setup of the Frontend:
 
