@@ -4,19 +4,20 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import type { Quest } from '@/interfaces/interfaces'
 import 'dotenv'
+import { ref } from 'vue'
 
 const maximumQuestLevel: number = 20;
 const emit = defineEmits(['questProvided', 'isLoading']);
 
 //Text Variables
-const enemyTypeLabel = 'Enemy Type:';
-const questTypeLabel = 'Quest Type:';
-const combatLevelLabel = 'Combat Level:';
-const submitBtnText = 'Submit';
+const enemyTypeLabel: string = 'Enemy Type:';
+const questTypeLabel: string = 'Quest Type:';
+const combatLevelLabel: string = 'Combat Level:';
+const submitBtnText: string = 'Submit';
 const exampleQuestTypes: string = 'Some example quest types are: Combat, Exploration, Investigation, or a Dungeon Delve!';
 
 //V-Models that will change as the inputs change
-let combatLevel: number = 0;
+let combatLevel: number = 1;
 let enemyType: string = '';
 let questType: string = '';
 
@@ -26,8 +27,16 @@ const fallbackQuest: Quest = {
     image: 'https://imageio.forbes.com/specials-images/dam/imageserve/1138532387/960x0.jpg?height=473&width=711&fit=bounds'
 }
 
-async function submitToOpenAi() {
+let isLoading = ref(false);
+
+//One function to set loading state in 2 spots -- will refactor to use global state
+function setAndEmitLoading() {
     emit('isLoading');
+    isLoading.value = !isLoading.value;
+}
+
+async function submitToOpenAi() {
+    setAndEmitLoading();
     const requestObj = {combatLevel, enemyType, questType};
 
     const response = await axios.post('http://localhost:4000/openai/quest', requestObj);
@@ -38,8 +47,8 @@ async function submitToOpenAi() {
     } else {
         emit('questProvided', response.data);
     }
-    
-    emit('isLoading');
+
+    setAndEmitLoading();
 }
 
 </script>
@@ -65,7 +74,7 @@ async function submitToOpenAi() {
             </select>
         </div>
     </div>
-    <button class="btn btn-success col-md-3 submit mt-3" v-on:click="submitToOpenAi">{{ submitBtnText }}</button>
+    <button class="btn btn-success col-md-3 submit mt-3" v-on:click="submitToOpenAi" :disabled=isLoading>{{ isLoading ? 'LOADING...' : submitBtnText }}</button>
 </template>
 
 
