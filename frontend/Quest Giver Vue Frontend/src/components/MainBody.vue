@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-around main-content">
         <div class="col d-flex justify-content-center m-5">
-            <img :src=props.questImageUrl id="" alt="" class="quest-img" />
+            <img :src=props.questImageUrl :id=props.questImageUrl alt="quest-img" class="quest-img" />
         </div>
         <div class="col justify-content-center m-5">
            <p v-for="section in questDescriptionReference" :key="section">

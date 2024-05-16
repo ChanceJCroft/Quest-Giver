@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import type { Quest } from '@/interfaces/interfaces'
-import 'dotenv'
 import { ref } from 'vue'
+import { axiosLocalPort } from '@/constants/axiosConst'
 
 const maximumQuestLevel: number = 20;
 const emit = defineEmits(['questProvided', 'isLoading']);
@@ -15,6 +15,7 @@ const questTypeLabel: string = 'Quest Type:';
 const combatLevelLabel: string = 'Combat Level:';
 const submitBtnText: string = 'Submit';
 const exampleQuestTypes: string = 'Some example quest types are: Combat, Exploration, Investigation, or a Dungeon Delve!';
+const loadingBtnText: string = 'LOADING...'
 
 //V-Models that will change as the inputs change
 let combatLevel: number = 1;
@@ -36,10 +37,16 @@ function setAndEmitLoading() {
 }
 
 async function submitToOpenAi() {
+    //If fields we're left empty, return
+    if(enemyType == '' || questType == '') {
+        alert('Please make sure all fields are filled out before submitting!');
+        return;
+    }
+
     setAndEmitLoading();
     const requestObj = {combatLevel, enemyType, questType};
 
-    const response = await axios.post('http://localhost:4000/openai/quest', requestObj);
+    const response = await axios.post(axiosLocalPort, requestObj);
     
     //TODO -- Clean up error handling. Prepare specific responses for each of the error types: https://platform.openai.com/docs/guides/error-codes/api-errors
     if(response.status > 400) {
@@ -74,7 +81,11 @@ async function submitToOpenAi() {
             </select>
         </div>
     </div>
-    <button class="btn btn-success col-md-3 submit mt-3" v-on:click="submitToOpenAi" :disabled=isLoading>{{ isLoading ? 'LOADING...' : submitBtnText }}</button>
+    <button class="btn btn-success col-md-3 submit mt-3" v-on:click="submitToOpenAi" :disabled=isLoading>{{ isLoading ? loadingBtnText : submitBtnText }}
+        <div v-if="isLoading" class="spinner-border mt-1 pl-2" style="width: 1rem; height: 1rem; text-align: center;" role="status">
+            <span class="sr-only">{{ loadingBtnText }}</span>
+        </div>
+    </button>
 </template>
 
 
