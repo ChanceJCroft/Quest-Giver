@@ -5,7 +5,7 @@ require('dotenv');
 
 //Express Setup
 const app = express();
-app.listen(process.env.LOCALHOST_PORT, () => console.log(`Working on Port ${LOCALHOST_PORT}`))
+app.listen(4000, () => console.log(`Working on Port 4000`))
 
 
 //Middleware
