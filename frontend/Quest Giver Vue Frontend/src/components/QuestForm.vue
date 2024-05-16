@@ -30,16 +30,20 @@ const fallbackQuest: Quest = {
 
 let isLoading = ref(false);
 
+function setQuestFormIsLoading() {
+    isLoading.value = !isLoading.value
+}
+
 //One function to set loading state in 2 spots -- will refactor to use global state
 function setAndEmitLoading() {
     emit('isLoading');
-    isLoading.value = !isLoading.value;
+    setQuestFormIsLoading();
 }
 
 async function submitToOpenAi() {
-    //If fields we're left empty, return
     //TODO - Implement modal instead of alert
-    if(enemyType == '' || questType == '') {
+    //TODO - Should it reset the field? Experiment
+    if(enemyType.trim().length == 0 || questType.trim().length == 0) {
         alert('Please make sure all fields are filled out before submitting!');
         return;
     }
