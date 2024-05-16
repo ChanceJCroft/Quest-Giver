@@ -1,7 +1,6 @@
 const { generateQuest } = require('./controllers/openaiController')
 const express = require('express')
 const cors= require('cors');
-require('dotenv');
 
 //Express Setup
 const app = express();

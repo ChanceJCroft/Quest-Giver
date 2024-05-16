@@ -38,6 +38,7 @@ function setAndEmitLoading() {
 
 async function submitToOpenAi() {
     //If fields we're left empty, return
+    //TODO - Implement modal instead of alert
     if(enemyType == '' || questType == '') {
         alert('Please make sure all fields are filled out before submitting!');
         return;
@@ -48,7 +49,7 @@ async function submitToOpenAi() {
 
     const response = await axios.post(axiosLocalPort, requestObj);
     
-    //TODO -- Clean up error handling. Prepare specific responses for each of the error types: https://platform.openai.com/docs/guides/error-codes/api-errors
+    //TODO -- Clean up error handling. Prepare specific responses/modals for each of the error types: https://platform.openai.com/docs/guides/error-codes/api-errors
     if(response.status > 400) {
         emit('questProvided', fallbackQuest)
     } else {
