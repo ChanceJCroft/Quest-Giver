@@ -50,5 +50,6 @@ watch(() => props.questDescription, (newVal) => {
 .quest-img {
     height: 1024px;
     width: 1024px;
+    border: 1px solid black;
 }
 </style>

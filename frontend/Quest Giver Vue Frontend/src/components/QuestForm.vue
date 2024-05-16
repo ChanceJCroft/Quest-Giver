@@ -15,7 +15,7 @@ const questTypeLabel: string = 'Quest Type:';
 const combatLevelLabel: string = 'Combat Level:';
 const submitBtnText: string = 'Submit';
 const exampleQuestTypes: string = 'Some example quest types are: Combat, Exploration, Investigation, or a Dungeon Delve!';
-const loadingBtnText: string = 'LOADING...'
+const loadingText: string = 'Loading...'
 
 //V-Models that will change as the inputs change
 let combatLevel: number = 1;
@@ -34,17 +34,24 @@ function setQuestFormIsLoading() {
     isLoading.value = !isLoading.value
 }
 
-//One function to set loading state in 2 spots -- will refactor to use global state
+//TODO - Refactor to use better state management - this sets state in 2 components
 function setAndEmitLoading() {
     emit('isLoading');
     setQuestFormIsLoading();
 }
 
+//TODO - Should it reset the field? Experiment
+/*function resetInputFields() {
+    enemyType = '';
+    questType = '';
+    combatLevel = 1;
+}*/
+
 async function submitToOpenAi() {
     //TODO - Implement modal instead of alert
-    //TODO - Should it reset the field? Experiment
     if(enemyType.trim().length == 0 || questType.trim().length == 0) {
         alert('Please make sure all fields are filled out before submitting!');
+        //resetInputFields();
         return;
     }
 
@@ -67,7 +74,7 @@ async function submitToOpenAi() {
 
 
 <template>
-    <div class="d-flex justify-content-around form-container">
+    <form class="d-flex justify-content-around form-container">
         <div class="input-field">
             <label for="enemy-type" class="input-spacing">{{ enemyTypeLabel }}</label>
             <input v-model="enemyType" class="col-md-3" type="text" name="enemy-type" id="enemy-type"/>
@@ -85,10 +92,10 @@ async function submitToOpenAi() {
                 <option v-for="n in maximumQuestLevel" :key=n :value=n>{{ n }}</option>
             </select>
         </div>
-    </div>
-    <button class="btn btn-success col-md-3 submit mt-3" v-on:click="submitToOpenAi" :disabled=isLoading>{{ isLoading ? loadingBtnText : submitBtnText }}
+    </form>
+    <button class="btn btn-success col-md-3 submit mt-3" v-on:click="submitToOpenAi" :disabled=isLoading>{{ isLoading ? '' : submitBtnText }}
         <div v-if="isLoading" class="spinner-border mt-1 pl-2" style="width: 1rem; height: 1rem; text-align: center;" role="status">
-            <span class="sr-only">{{ loadingBtnText }}</span>
+            <span class="sr-only">{{ loadingText }}</span>
         </div>
     </button>
 </template>
