@@ -53,7 +53,8 @@ Once a quest has been provided it should look something like this:
 ![image](https://github.com/ChanceJCroft/Quest-Giver/assets/66639666/580433b9-bf91-4237-a04c-44102276ce56)
 
 
-If you would like to adjust the prompt for different outcomes, you can do that in `openAiController.js`
+If you would like to adjust the prompt for different outcomes, you can do that in `openAiController.js`.
+Simply adjust the 'content' portion of the message (where the variables are being used) to get different responses.
 ![image](https://github.com/ChanceJCroft/Quest-Giver/assets/66639666/09cbc7c2-987b-487f-aabf-27eb203c1f17)
 
 
