@@ -69,7 +69,7 @@ Simply adjust the 'content' portion of the message (where the variables are bein
 
 Chance Croft – chance.croft2@gmail.com
 
-[https://github.com/yourname/github-link](https://github.com/ChanceJCroft/)
+[https://github.com/ChanceJCroft/]
 
 ## Contributing
 
