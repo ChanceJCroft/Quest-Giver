@@ -11,10 +11,10 @@ Install and Setup of the Server:
 
 ```sh
 Clone the repository.
-cd server
-npm install
-Create a .env file and add a OPENAI_KEY='key-goes-here'.
-Node server.js
+enter 'cd server'
+enter 'npm install'
+Create a .env file and add a `OPENAI_KEY=key-goes-here`.
+enter 'Node server.js'
 Server should be running on Port 4000 (in v1).
 ```
 
@@ -22,9 +22,9 @@ Installation and Setup of the Frontend:
 
 ```sh
 Clone the repository.
-cd frontend\'Quest Giver Vue Frontend'
-npm install
-npm run dev
+enter `cd frontend\'Quest Giver Vue Frontend'`
+enter 'npm install'
+enter 'npm run dev'
 Frontend should be running on Port 5173 (in v1).
 ```
 
@@ -33,7 +33,8 @@ Frontend should be running on Port 5173 (in v1).
 
 A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
 
-_For more examples and usage, please refer to the [Wiki][wiki]._
+![image](https://github.com/ChanceJCroft/Quest-Giver/assets/66639666/580433b9-bf91-4237-a04c-44102276ce56)
+
 
 ## Upcoming Changes (5/16/24)
 - Global state management via Vuex or Pinia
