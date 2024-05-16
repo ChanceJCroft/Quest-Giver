@@ -9,7 +9,7 @@ interface Quest {
   image: string,
 }
 
-let questText = ref('Test quest text');
+let questText = ref('Here is where your Quest will appear!');
 let questImageUrl = ref('https://www.worldanvil.com/uploads/images/17d789f01625ddd3d2d9b7f32eab9e9d.jpg');
 
 

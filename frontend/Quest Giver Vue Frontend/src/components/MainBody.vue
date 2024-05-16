@@ -4,10 +4,8 @@
             <img :src=props.questImageUrl id="" alt="" class="quest-img" />
         </div>
         <div class="col justify-content-center m-5">
-           <p v-for="section in questDescriptionReference" :key="section"
-        >
+           <p v-for="section in questDescriptionReference" :key="section">
             {{ section }}
-            <br/>
             <br/>
         </p>
         </div>
@@ -27,8 +25,8 @@ let questDescriptionReference: Array<string> = ['Request a quest to get started'
 //This function neatly separates the text in the UI
 watch(() => props.questDescription, (newVal) => {
     let newRef = newVal.split("\n").filter((x:string) => x != '');
-    
-    //WIP logic -- Attempting to conditionally uppercase a substring upon reaching a ':'
+
+    //TODO logic -- Attempting to conditionally uppercase a substring upon reaching a ':'
     //Need to investigate potential issues -- i.e. What if a colon is returning not related to a title section?
     /* for(let x of newRef) {
         const split = x.split(' ')[0];
@@ -37,6 +35,7 @@ watch(() => props.questDescription, (newVal) => {
             console.log(split[0].toUpperCase());
         }
     } */
+
     questDescriptionReference = newRef;
 })
 </script>

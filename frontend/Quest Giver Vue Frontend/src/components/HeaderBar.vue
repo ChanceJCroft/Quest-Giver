@@ -4,7 +4,7 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 
 //Text Variables
 const titleText: string = 'Dungeons and Dragons Quest Generator';
-const instructionsHoverText: string = 'Welcome! To be given a quest you must first fill in the 3 fields below. Please specificy what type of enemy you would like, what type of quest, what level, and hit Submit! Then, sit back and wait for your quest to be populated in the page below.'
+const instructionsHoverText: string = 'Welcome! To be given a quest you must first fill in the 3 fields below and hit Submit!'
 const instructionsTitle: string = 'Instructions';
 
 </script>
@@ -16,7 +16,8 @@ const instructionsTitle: string = 'Instructions';
         
     </div>
     <div class="d-flex justify-content-center align-middle">
-        <FontAwesomeIcon :icon=faCircleInfo class="icon pt-1" :title=instructionsHoverText /><p>{{ instructionsTitle }}</p>
+        <a :data-title="instructionsHoverText"><FontAwesomeIcon :icon=faCircleInfo class="icon pt-1" /></a>
+        <p>{{ instructionsTitle }}</p>
     </div>
 </template>
 
@@ -46,6 +47,39 @@ const instructionsTitle: string = 'Instructions';
 .instructions {
     display: flex;
     justify-content: center;
+}
+
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.5s;
+    visibility: visible;
+}
+[data-title]:after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: -1.6em;
+    left: 100%;
+    padding: 4px 4px 4px 8px;
+    color: #222;
+    white-space: nowrap; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px;  
+    border-radius: 5px;  
+    -moz-box-shadow: 0px 0px 4px #222;  
+    -webkit-box-shadow: 0px 0px 4px #222;  
+    box-shadow: 0px 0px 4px #222;  
+    background-image: -moz-linear-gradient(top, #f8f8f8, #cccccc);  
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f8f8f8),color-stop(1, #cccccc));
+    background-image: -webkit-linear-gradient(top, #f8f8f8, #cccccc);  
+    background-image: -moz-linear-gradient(top, #f8f8f8, #cccccc);  
+    background-image: -ms-linear-gradient(top, #f8f8f8, #cccccc);  
+    background-image: -o-linear-gradient(top, #f8f8f8, #cccccc);
+    opacity: 0;
+    z-index: 99999;
+    visibility: hidden;
+}
+[data-title] {
+    position: relative;
 }
 
 
