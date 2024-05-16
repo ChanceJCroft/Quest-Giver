@@ -75,6 +75,7 @@ Simply adjust the 'content' portion of the message (where the variables are bein
 - New Frontends to run against the Node app
 - More quest functionality (more than simply generating a quest)
 - Further UI cleanup
+- Enable switches for deployment in different modes (currently hard coded to localhost:4000)
 
 ## Meta
 
