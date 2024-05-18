@@ -2,6 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import LoginButton from './authentication/LoginButton.vue';
+import LogoutButton from './authentication/LogoutButton.vue';
 
 //Text Variables
 const titleText: string = 'Dungeons and Dragons Quest Generator';
@@ -15,6 +16,7 @@ const instructionsTitle: string = 'Instructions';
     <div class="main">
         <h1 class="title">{{ titleText }}</h1>
         <LoginButton />
+        <LogoutButton />
     </div>
     <div class="d-flex justify-content-center align-middle">
         <a :data-title="instructionsHoverText"><FontAwesomeIcon :icon=faCircleInfo class="icon pt-1" /></a>

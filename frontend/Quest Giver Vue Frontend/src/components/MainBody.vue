@@ -10,6 +10,7 @@
         </p>
         </div>
         <p v-if="isAuthenticated">You are authenticated!</p>
+        <p v-if="user">{{user}}!</p>
     </div>
 </template>
 
