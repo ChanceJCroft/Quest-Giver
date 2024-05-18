@@ -48,7 +48,7 @@ function setAndEmitLoading() {
 }*/
 
 async function submitToOpenAi() {
-    //TODO - Implement modal instead of alert
+    //TODO - Implement modal instead of alert and follow SRP rules
     if(enemyType.trim().length == 0 || questType.trim().length == 0) {
         alert('Please make sure all fields are filled out before submitting!');
         //resetInputFields();

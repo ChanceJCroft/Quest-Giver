@@ -9,16 +9,20 @@
             <br/>
         </p>
         </div>
+        <p v-if="isAuthenticated">You are authenticated!</p>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useAuth0 } from '@auth0/auth0-vue';
 import { watch } from 'vue';
 
 const props = defineProps(['questImageUrl', 'questDescription']);
 
+const { loginWithRedirect, user, isAuthenticated } = useAuth0();
 
-let questDescriptionReference: Array<string> = ['Request a quest to get started'];
+
+let questDescriptionReference: Array<string> = [props.questDescription];
 
 
 //Updates the reference, which in turns updates the UI
