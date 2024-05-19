@@ -20,7 +20,7 @@ import { watch } from 'vue';
 
 const props = defineProps(['questImageUrl', 'questDescription']);
 
-const { loginWithRedirect, user, isAuthenticated } = useAuth0();
+const { user, isAuthenticated } = useAuth0();
 
 
 let questDescriptionReference: Array<string> = [props.questDescription];

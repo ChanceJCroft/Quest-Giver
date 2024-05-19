@@ -3,11 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import LoginButton from './authentication/LoginButton.vue';
 import LogoutButton from './authentication/LogoutButton.vue';
+import { useAuth0 } from '@auth0/auth0-vue';
 
 //Text Variables
 const titleText: string = 'Dungeons and Dragons Quest Generator';
 const instructionsHoverText: string = 'Welcome! To be given a quest you must first fill in the 3 fields below and hit Submit!'
 const instructionsTitle: string = 'Instructions';
+
+const { isAuthenticated } = useAuth0();
 
 </script>
 
@@ -15,8 +18,8 @@ const instructionsTitle: string = 'Instructions';
 <template>
     <div class="main">
         <h1 class="title">{{ titleText }}</h1>
-        <LoginButton />
-        <LogoutButton />
+        <LoginButton v-if="!isAuthenticated"/>
+        <LogoutButton v-else/>
     </div>
     <div class="d-flex justify-content-center align-middle">
         <a :data-title="instructionsHoverText"><FontAwesomeIcon :icon=faCircleInfo class="icon pt-1" /></a>
